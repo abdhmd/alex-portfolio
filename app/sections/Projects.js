@@ -10,7 +10,7 @@ export default function Projects() {
       title: "E-Commerce Platform",
       description: "A full-featured online store with cart functionality, user authentication, and payment processing.",
       tags: ["React", "Node.js", "MongoDB", "Stripe"],
-      image: "https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+      image: "https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
       demoUrl: "#",
       codeUrl: "#"
     },
@@ -18,7 +18,7 @@ export default function Projects() {
       title: "Task Management App",
       description: "Collaborative task manager with real-time updates, drag-and-drop interface, and team features.",
       tags: ["Next.js", "Firebase", "Tailwind CSS"],
-      image: "https://images.unsplash.com/photo-1541462608143-67571c6738dd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+      image: "https://images.unsplash.com/photo-1541462608143-67571c6738dd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
       demoUrl: "#",
       codeUrl: "#"
     },
@@ -26,7 +26,7 @@ export default function Projects() {
       title: "Weather Dashboard",
       description: "Interactive weather application with 5-day forecasts, location search, and animated weather icons.",
       tags: ["JavaScript", "API Integration", "CSS3"],
-      image: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+      image: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
       demoUrl: "#",
       codeUrl: "#"
     }
@@ -38,12 +38,13 @@ export default function Projects() {
   };
 
   return (
-    <section id="projects" className="py-20 lg:py-32  bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 ">
+    <section id="projects" className="py-20 lg:py-32 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
       <div className="container mx-auto px-6">
         <motion.div
-          initial="hidden"
-          animate="visible"
           variants={fadeIn}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
@@ -60,9 +61,10 @@ export default function Projects() {
           {projects.map((project, index) => (
             <motion.div
               key={index}
-              initial="hidden"
-              animate="visible"
               variants={fadeIn}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
               className="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
             >
@@ -74,20 +76,20 @@ export default function Projects() {
                   className="object-cover"
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   placeholder="blur"
-                  blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIwIiBoZWlnaHQ9IjMyMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZWVlZWVlIi8+PHRleHQgeD0iNTAlIiB5PSI1JSIgZm9udC1zaXplPSIyMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2FhYSI+TG9hZGluZy4uLjwvdGV4dD48L3N2Zz4="
+                  blurDataURL="data:image/svg+xml;base64,..."
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                 <div className="absolute bottom-4 left-4 right-4">
                   <h3 className="text-xl font-bold text-white">{project.title}</h3>
                 </div>
               </div>
-              
+
               <div className="p-6">
                 <p className="text-gray-600 dark:text-gray-400 mb-4">{project.description}</p>
-                
+
                 <div className="flex flex-wrap gap-2 mb-6">
                   {project.tags.map((tag, tagIndex) => (
-                    <span 
+                    <span
                       key={tagIndex}
                       className="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm text-gray-700 dark:text-gray-300"
                     >
@@ -95,16 +97,16 @@ export default function Projects() {
                     </span>
                   ))}
                 </div>
-                
-                <div className="flex flex-col  md:flex-row gap-3">
-                  <a 
+
+                <div className="flex flex-col md:flex-row gap-3">
+                  <a
                     href={project.demoUrl}
                     className="flex items-center justify-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors duration-300"
                   >
                     <EyeIcon className="w-4 h-4" />
                     Live Demo
                   </a>
-                  <a 
+                  <a
                     href={project.codeUrl}
                     className="flex items-center justify-center gap-2 px-4 py-2 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors duration-300"
                   >
@@ -118,9 +120,10 @@ export default function Projects() {
         </div>
 
         <motion.div
-          initial="hidden"
-          animate="visible"
           variants={fadeIn}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.6, delay: 0.3 }}
           className="text-center mt-16"
         >

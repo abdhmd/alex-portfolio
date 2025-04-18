@@ -3,7 +3,6 @@ import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import BackToTop from "./components/BackToTop";
-import { AnimationProvider } from "./context/AnimationContext";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -26,7 +25,7 @@ export default function RootLayout({ children }) {
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Navbar />
-        <AnimationProvider>{children}</AnimationProvider>
+        {children}
         <BackToTop />
         <Footer />
       </body>

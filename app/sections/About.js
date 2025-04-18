@@ -2,12 +2,23 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import { UserIcon, LightBulbIcon, CogIcon, PuzzlePieceIcon } from '@heroicons/react/24/outline';
+import {
+  UserIcon,
+  LightBulbIcon,
+  CogIcon,
+  PuzzlePieceIcon,
+} from '@heroicons/react/24/outline';
+import { useInView } from 'react-intersection-observer';
 
 export default function AboutSection() {
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.2,
+  });
+
   const fadeIn = {
     hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 }
+    visible: { opacity: 1, y: 0 },
   };
 
   const skills = [
@@ -19,13 +30,13 @@ export default function AboutSection() {
 
   return (
     <section id="about" className="py-20 lg:py-32 bg-white dark:bg-gray-900">
-      <div className="container mx-auto px-6">
+      <div className="container mx-auto px-6" ref={ref}>
         <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
           {/* Left column - Image */}
           <motion.div
             className="lg:w-1/2 relative"
             initial="hidden"
-            animate="visible"
+            animate={inView ? 'visible' : 'hidden'}
             variants={fadeIn}
             transition={{ duration: 0.6 }}
           >
@@ -33,7 +44,7 @@ export default function AboutSection() {
               <div className="absolute -inset-4 rounded-3xl bg-gradient-to-br from-blue-100 to-purple-100 dark:from-blue-900/30 dark:to-purple-900/30"></div>
               <div className="relative rounded-2xl overflow-hidden border-8 border-white dark:border-gray-800 shadow-lg">
                 <Image
-                  src="/portfolio.jpeg" // Replace with your about image
+                  src="/portfolio.jpeg"
                   alt="About me"
                   width={600}
                   height={600}
@@ -47,7 +58,7 @@ export default function AboutSection() {
           <div className="lg:w-1/2 space-y-8">
             <motion.div
               initial="hidden"
-              animate="visible"
+              animate={inView ? 'visible' : 'hidden'}
               variants={fadeIn}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
@@ -65,7 +76,7 @@ export default function AboutSection() {
             <motion.div
               className="space-y-6"
               initial="hidden"
-              animate="visible"
+              animate={inView ? 'visible' : 'hidden'}
               variants={fadeIn}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
@@ -101,7 +112,7 @@ export default function AboutSection() {
             <motion.div
               className="pt-4"
               initial="hidden"
-              animate="visible"
+              animate={inView ? 'visible' : 'hidden'}
               variants={fadeIn}
               transition={{ duration: 0.6, delay: 0.6 }}
             >

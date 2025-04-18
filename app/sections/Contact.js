@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { EnvelopeIcon, MapPinIcon, PhoneIcon } from '@heroicons/react/24/outline';
 import { FaTwitter, FaGithub, FaLinkedin, FaDribbble } from 'react-icons/fa';
+import { useInView } from 'react-intersection-observer';
 
 export default function Contact() {
   const fadeIn = {
@@ -10,12 +11,17 @@ export default function Contact() {
     visible: { opacity: 1, y: 0 }
   };
 
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.2,
+  });
+
   return (
     <section id="contact" className="py-20 lg:py-32 bg-white dark:bg-gray-900">
-      <div className="container mx-auto px-6">
+      <div className="container mx-auto px-6" ref={ref}>
         <motion.div
           initial="hidden"
-          animate="visible"
+          animate={inView ? 'visible' : 'hidden'}
           variants={fadeIn}
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
@@ -32,7 +38,7 @@ export default function Contact() {
         <div className="flex flex-col lg:flex-row gap-12">
           <motion.div
             initial="hidden"
-            animate="visible"
+            animate={inView ? 'visible' : 'hidden'}
             variants={fadeIn}
             transition={{ duration: 0.6, delay: 0.2 }}
             className="lg:w-1/2 space-y-8"
@@ -97,7 +103,7 @@ export default function Contact() {
 
           <motion.div
             initial="hidden"
-            animate="visible"
+            animate={inView ? 'visible' : 'hidden'}
             variants={fadeIn}
             transition={{ duration: 0.6, delay: 0.4 }}
             className="lg:w-1/2"
